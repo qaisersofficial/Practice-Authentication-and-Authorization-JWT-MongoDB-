@@ -43,6 +43,11 @@ app.post('/create', (req, res) => {
     
     });
 
+    app.get('/logout', (req, res) => {
+       res.clearCookie("jwt");
+       res.redirect('/');
+        });
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
     });
