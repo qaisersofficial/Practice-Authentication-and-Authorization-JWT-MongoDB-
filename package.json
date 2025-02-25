@@ -1,0 +1,28 @@
+{
+  "name": "practice-authentication-and-authorization-jwt-mongodb-",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qaisersofficial/Practice-Authentication-and-Authorization-JWT-MongoDB-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/qaisersofficial/Practice-Authentication-and-Authorization-JWT-MongoDB-/issues"
+  },
+  "homepage": "https://github.com/qaisersofficial/Practice-Authentication-and-Authorization-JWT-MongoDB-#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "moongose": "^1.0.0"
+  }
+}
