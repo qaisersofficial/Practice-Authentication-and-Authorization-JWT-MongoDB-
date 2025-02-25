@@ -13,7 +13,7 @@ app.use(cookieParser());
 
 
 app.get('/', (req, res) => {
-    res.send('Welcome!');
+    res.render("index");
     });
 
 app.listen(port, () => {
