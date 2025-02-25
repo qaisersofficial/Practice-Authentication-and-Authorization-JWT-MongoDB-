@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const userModel = require('./models/user');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const port = 3000;
 
@@ -32,6 +33,10 @@ app.post('/create', (req, res) => {
                 email,
                 age
             });
+
+            let token = jwt.sign({email}, "asdfjkl;");
+            res.cookie("jwt", token);
+
             res.send(createdUser);
         });
     });
