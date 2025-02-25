@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const userModel = require('./models/user');
+const bcrypt = require('bcrypt');
 
 const port = 3000;
 
@@ -19,16 +20,22 @@ app.get('/', (req, res) => {
     res.render("index");
     });
 
-app.post('/create', async(req, res) => {
+app.post('/create', (req, res) => {
     let { username, password, email, age} = req.body;
 
-    let createdUser = await userModel.create({
-        username,
-        password,
-        email,
-        age
+    bcrypt.genSalt(10, function(err, salt) {
+        // console.log(salt);
+        bcrypt.hash(password, salt, async function(err, hash) {
+            let createdUser = await userModel.create({
+                username,
+                password: hash,
+                email,
+                age
+            });
+            res.send(createdUser);
+        });
     });
-    res.send(createdUser);
+    
     });
 
 app.listen(port, () => {
