@@ -37,12 +37,40 @@ app.post('/create', (req, res) => {
             let token = jwt.sign({email}, "asdfjkl;");
             res.cookie("jwt", token);
 
-            res.send(createdUser);
+            // res.send(createdUser);
+            res.redirect('/login');
         });
     });
     
     });
 
+    app.get('/login', (req, res) => {
+        res.render("login")
+         });
+
+    app.post('/login', (req, res) => {
+        let { email, password } = req.body;
+        userModel.findOne({ email }, (err, user) => {
+            if (user) {
+                bcrypt.compare(password, user.password, (err, result) => {
+                    if (result) {
+                        let token = jwt.sign({email}, "asdfjkl;");
+                        res.cookie("jwt", token);
+                        res.send('User is authenticated');
+                        // res.redirect('/');
+                    }
+                    else {
+                        res.send("Password is incorrect");
+                    }
+                }
+                );
+            }
+            else {
+                res.send("User not found");
+            }
+        });
+         });
+         
     app.get('/logout', (req, res) => {
        res.clearCookie("jwt");
        res.redirect('/');
